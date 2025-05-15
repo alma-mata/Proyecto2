@@ -7,6 +7,10 @@
 // target_pulse_width = 1000 + (adc_value * 1000UL / 1023);
 #include "PWM0.h"
 
+volatile uint16_t contador_pulso = 0;
+volatile uint16_t pulse_SERVO1 = 0;
+volatile uint16_t pulse_SERVO2 = 0;
+volatile uint16_t pulse_SERVO3 = 0;
 /****************************************/
 // Subrutinas sin Interrupcion
 void PWM0_init(void) {
@@ -38,18 +42,18 @@ ISR(TIMER0_COMPA_vect) {
 	if (contador_pulso >= 400) contador_pulso = 0;
 	if (contador_pulso == 0)
 	{
-		PORTB |= servo1_PIN | servo2_PIN | servo3_PIN;
+		PORTB |= (1 << PORTB3) | (1 << PORTB4) | (1 << PORTB5);
 	}
 	else if (contador_pulso == (pulse_SERVO1 / 50))
 	{
-		PORTB &= ~servo1_PIN;
+		PORTB &= ~(1 << PORTB3);
 	}
 	else if (contador_pulso == (pulse_SERVO2 / 50))
 	{
-		PORTB &= ~servo2_PIN;
+		PORTB &= ~(1 << PORTB4);
 	}
 	else if (contador_pulso == (pulse_SERVO3 / 50))
 	{
-		PORTB &= ~servo3_PIN;
+		PORTB &= ~(1 << PORTB5);
 	}
 }
