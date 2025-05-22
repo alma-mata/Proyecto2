@@ -154,9 +154,16 @@
     <Compile Include="PWM1\PWM1.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="UART\UART.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="UART\UART.h">
+      <SubType>compile</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="EEPROM" />
+    <Folder Include="UART" />
     <Folder Include="PWM1" />
     <Folder Include="PWM0" />
   </ItemGroup>
