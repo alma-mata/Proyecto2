@@ -69,9 +69,21 @@ int main(void)
 			{
 				leer_EEPROOM(received_RX);
 			}
-			else if (tipo_feed == 'W')
+			else if ((tipo_feed == 'W') && (estado_actual == 0))
 			{
 				set_motor(1, received_RX);
+			}
+			else if ((tipo_feed == 'X') && (estado_actual == 0))
+			{
+				set_motor(2, received_RX);
+			}
+			else if ((tipo_feed == 'Y') && (estado_actual == 0))
+			{
+				set_motor(3, received_RX);
+			}
+			else if ((tipo_feed == 'Z') && (estado_actual == 0))
+			{
+				set_motor(4, received_RX);
 			}
 		}
 		
@@ -120,10 +132,8 @@ void modo_MANUAL(void){
 	dutyCycle_PB1(500 + (servo1 * 2000UL / 255));
 	dutyCycle_PB2(500 + (servo2 * 2000UL / 255));
 	dutyCycle_PB3(500 + (servo3 * 2000UL / 255));
-	if (servo4 <= 63)
-	{
-		dutyCycle_PB4(500 + (servo4 * 2000UL / 255));
-	}
+	if (servo4 > 63) servo4 = 63;
+	dutyCycle_PB4(500 + (servo4 * 2000UL / 255));
 }
 
 void set_motor(uint8_t n_motor, uint8_t valor){
