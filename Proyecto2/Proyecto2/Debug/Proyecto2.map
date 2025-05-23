@@ -11,6 +11,11 @@ c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/..
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_umulhisi3.o)
                               main.o (__umulhisi3)
 
+Allocating common symbols
+Common symbol       size              file
+
+binario_buffer      0x2               main.o
+
 Discarded input sections
 
  .data          0x00000000        0x0 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega328p/avr5/crtatmega328p.o
@@ -21,6 +26,8 @@ Discarded input sections
  .text          0x00000000        0x0 main.o
  .data          0x00000000        0x0 main.o
  .bss           0x00000000        0x0 main.o
+ .bss.en_modo_binario
+                0x00000000        0x1 main.o
  .bss.configuracion_flag
                 0x00000000        0x1 main.o
  .text          0x00000000        0x0 PWM0/PWM0.o
@@ -241,7 +248,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x784
+.text           0x00000000      0x822
  *(.vectors)
  .vectors       0x00000000       0x68 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega328p/avr5/crtatmega328p.o
                 0x00000000                __vector_default
@@ -336,72 +343,75 @@ END GROUP
  .text.setup    0x000000f8       0x3a main.o
                 0x000000f8                setup
  .text.modo_MANUAL
-                0x00000132       0xa2 main.o
+                0x00000132       0xb4 main.o
                 0x00000132                modo_MANUAL
+ .text.set_motor
+                0x000001e6       0x4a main.o
+                0x000001e6                set_motor
  .text.set_estado
-                0x000001d4       0x4a main.o
-                0x000001d4                set_estado
+                0x00000230       0x4a main.o
+                0x00000230                set_estado
  .text.set_estadoUART
-                0x0000021e       0x3c main.o
-                0x0000021e                set_estadoUART
+                0x0000027a       0x3c main.o
+                0x0000027a                set_estadoUART
  .text.leer_EEPROOM
-                0x0000025a       0xfc main.o
-                0x0000025a                leer_EEPROOM
+                0x000002b6       0xfc main.o
+                0x000002b6                leer_EEPROOM
  .text.escribir_EEPROM
-                0x00000356       0x84 main.o
-                0x00000356                escribir_EEPROM
- .text.main     0x000003da       0x9a main.o
-                0x000003da                main
+                0x000003b2       0x84 main.o
+                0x000003b2                escribir_EEPROM
+ .text.main     0x00000436       0x70 main.o
+                0x00000436                main
  .text.__vector_21
-                0x00000474       0xae main.o
-                0x00000474                __vector_21
+                0x000004a6       0xae main.o
+                0x000004a6                __vector_21
  .text.__vector_5
-                0x00000522       0x32 main.o
-                0x00000522                __vector_5
+                0x00000554       0x66 main.o
+                0x00000554                __vector_5
  .text.__vector_18
-                0x00000554       0x26 main.o
-                0x00000554                __vector_18
+                0x000005ba       0x5e main.o
+                0x000005ba                __vector_18
  .text.PWM0_init
-                0x0000057a       0x16 PWM0/PWM0.o
-                0x0000057a                PWM0_init
+                0x00000618       0x16 PWM0/PWM0.o
+                0x00000618                PWM0_init
  .text.dutyCycle_PB3
-                0x00000590        0xa PWM0/PWM0.o
-                0x00000590                dutyCycle_PB3
+                0x0000062e        0xa PWM0/PWM0.o
+                0x0000062e                dutyCycle_PB3
  .text.dutyCycle_PB4
-                0x0000059a        0xa PWM0/PWM0.o
-                0x0000059a                dutyCycle_PB4
+                0x00000638        0xa PWM0/PWM0.o
+                0x00000638                dutyCycle_PB4
  .text.__vector_14
-                0x000005a4       0xf8 PWM0/PWM0.o
-                0x000005a4                __vector_14
+                0x00000642       0xf8 PWM0/PWM0.o
+                0x00000642                __vector_14
  .text.PWM1_init
-                0x0000069c       0x20 PWM1/PWM1.o
-                0x0000069c                PWM1_init
+                0x0000073a       0x20 PWM1/PWM1.o
+                0x0000073a                PWM1_init
  .text.dutyCycle_PB1
-                0x000006bc        0xa PWM1/PWM1.o
-                0x000006bc                dutyCycle_PB1
+                0x0000075a        0xa PWM1/PWM1.o
+                0x0000075a                dutyCycle_PB1
  .text.dutyCycle_PB2
-                0x000006c6        0xa PWM1/PWM1.o
-                0x000006c6                dutyCycle_PB2
+                0x00000764        0xa PWM1/PWM1.o
+                0x00000764                dutyCycle_PB2
  .text.UART_init
-                0x000006d0       0x1a UART/UART.o
-                0x000006d0                UART_init
+                0x0000076e       0x1a UART/UART.o
+                0x0000076e                UART_init
  .text.send_CHAR
-                0x000006ea        0xe UART/UART.o
-                0x000006ea                send_CHAR
+                0x00000788        0xe UART/UART.o
+                0x00000788                send_CHAR
  .text.send_STRING
-                0x000006f8       0x26 UART/UART.o
-                0x000006f8                send_STRING
+                0x00000796       0x26 UART/UART.o
+                0x00000796                send_STRING
  .text.libgcc.div
-                0x0000071e       0x44 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodsi4.o)
-                0x0000071e                __udivmodsi4
+                0x000007bc       0x44 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodsi4.o)
+                0x000007bc                __udivmodsi4
  .text.libgcc.mul
-                0x00000762       0x1e c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_umulhisi3.o)
-                0x00000762                __umulhisi3
-                0x00000780                . = ALIGN (0x2)
+                0x00000800       0x1e c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_umulhisi3.o)
+                0x00000800                __umulhisi3
+                0x0000081e                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00000780        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
-                0x00000780                _exit
-                0x00000780                exit
+ .fini9         0x0000081e        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+                0x0000081e                _exit
+                0x0000081e                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -420,11 +430,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00000780        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+ .fini0         0x0000081e        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x00000784                _etext = .
+                0x00000822                _etext = .
 
-.data           0x00800100        0xe load address 0x00000784
+.data           0x00800100        0xe load address 0x00000822
                 0x00800100                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -444,57 +454,65 @@ END GROUP
                 0x0080010e                _edata = .
                 0x0080010e                PROVIDE (__data_end, .)
 
-.bss            0x0080010e       0x16
+.bss            0x0080010e       0x1a
                 0x0080010e                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
- .bss.dato_ENVIADO
+ .bss.binario_index
                 0x0080010e        0x1 main.o
-                0x0080010e                dato_ENVIADO
- .bss.received_RX
+                0x0080010e                binario_index
+ .bss.tipo_feed
                 0x0080010f        0x1 main.o
-                0x0080010f                received_RX
- .bss.pos_read  0x00800110        0x1 main.o
-                0x00800110                pos_read
- .bss.pos_write
+                0x0080010f                tipo_feed
+ .bss.dato_ENVIADO
+                0x00800110        0x1 main.o
+                0x00800110                dato_ENVIADO
+ .bss.received_RX
                 0x00800111        0x1 main.o
-                0x00800111                pos_write
+                0x00800111                received_RX
+ .bss.pos_read  0x00800112        0x1 main.o
+                0x00800112                pos_read
+ .bss.pos_write
+                0x00800113        0x1 main.o
+                0x00800113                pos_write
  .bss.accion_activa
-                0x00800112        0x1 main.o
-                0x00800112                accion_activa
- .bss.servo4    0x00800113        0x2 main.o
-                0x00800113                servo4
- .bss.servo3    0x00800115        0x2 main.o
-                0x00800115                servo3
- .bss.servo2    0x00800117        0x2 main.o
-                0x00800117                servo2
- .bss.servo1    0x00800119        0x2 main.o
-                0x00800119                servo1
+                0x00800114        0x1 main.o
+                0x00800114                accion_activa
+ .bss.servo4    0x00800115        0x2 main.o
+                0x00800115                servo4
+ .bss.servo3    0x00800117        0x2 main.o
+                0x00800117                servo3
+ .bss.servo2    0x00800119        0x2 main.o
+                0x00800119                servo2
+ .bss.servo1    0x0080011b        0x2 main.o
+                0x0080011b                servo1
  .bss.canal_ADC
-                0x0080011b        0x1 main.o
-                0x0080011b                canal_ADC
+                0x0080011d        0x1 main.o
+                0x0080011d                canal_ADC
  .bss.pulse_SERVO3
-                0x0080011c        0x2 PWM0/PWM0.o
-                0x0080011c                pulse_SERVO3
- .bss.pulse_SERVO2
                 0x0080011e        0x2 PWM0/PWM0.o
-                0x0080011e                pulse_SERVO2
- .bss.pulse_SERVO1
+                0x0080011e                pulse_SERVO3
+ .bss.pulse_SERVO2
                 0x00800120        0x2 PWM0/PWM0.o
-                0x00800120                pulse_SERVO1
- .bss.contador_pulso
+                0x00800120                pulse_SERVO2
+ .bss.pulse_SERVO1
                 0x00800122        0x2 PWM0/PWM0.o
-                0x00800122                contador_pulso
+                0x00800122                pulse_SERVO1
+ .bss.contador_pulso
+                0x00800124        0x2 PWM0/PWM0.o
+                0x00800124                contador_pulso
  *(COMMON)
-                0x00800124                PROVIDE (__bss_end, .)
-                0x00000784                __data_load_start = LOADADDR (.data)
-                0x00000792                __data_load_end = (__data_load_start + SIZEOF (.data))
+ COMMON         0x00800126        0x2 main.o
+                0x00800126                binario_buffer
+                0x00800128                PROVIDE (__bss_end, .)
+                0x00000822                __data_load_start = LOADADDR (.data)
+                0x00000830                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x00800124        0x0
+.noinit         0x00800128        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x00800124                _end = .
+                0x00800128                _end = .
                 [!provide]                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
@@ -563,30 +581,30 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000      0x138
+.debug_aranges  0x00000000      0x140
  *(.debug_aranges)
  .debug_aranges
                 0x00000000       0x28 EEPROM/EEPROM.o
  .debug_aranges
-                0x00000028       0x70 main.o
+                0x00000028       0x78 main.o
  .debug_aranges
-                0x00000098       0x40 PWM0/PWM0.o
+                0x000000a0       0x40 PWM0/PWM0.o
  .debug_aranges
-                0x000000d8       0x30 PWM1/PWM1.o
+                0x000000e0       0x30 PWM1/PWM1.o
  .debug_aranges
-                0x00000108       0x30 UART/UART.o
+                0x00000110       0x30 UART/UART.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000      0xf05
+.debug_info     0x00000000      0xfd0
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x5f4 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega328p/avr5/crtatmega328p.o
  .debug_info    0x000005f4       0xde EEPROM/EEPROM.o
- .debug_info    0x000006d2      0x4d4 main.o
- .debug_info    0x00000ba6      0x178 PWM0/PWM0.o
- .debug_info    0x00000d1e       0xe4 PWM1/PWM1.o
- .debug_info    0x00000e02      0x103 UART/UART.o
+ .debug_info    0x000006d2      0x59f main.o
+ .debug_info    0x00000c71      0x178 PWM0/PWM0.o
+ .debug_info    0x00000de9       0xe4 PWM1/PWM1.o
+ .debug_info    0x00000ecd      0x103 UART/UART.o
 
 .debug_abbrev   0x00000000      0x993
  *(.debug_abbrev)
@@ -597,43 +615,43 @@ END GROUP
  .debug_abbrev  0x0000083b       0x92 PWM1/PWM1.o
  .debug_abbrev  0x000008cd       0xc6 UART/UART.o
 
-.debug_line     0x00000000      0x9cb
+.debug_line     0x00000000      0x9f0
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x134 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega328p/avr5/crtatmega328p.o
  .debug_line    0x00000134       0xf6 EEPROM/EEPROM.o
- .debug_line    0x0000022a      0x45f main.o
- .debug_line    0x00000689      0x15c PWM0/PWM0.o
- .debug_line    0x000007e5       0xe2 PWM1/PWM1.o
- .debug_line    0x000008c7      0x104 UART/UART.o
+ .debug_line    0x0000022a      0x484 main.o
+ .debug_line    0x000006ae      0x15c PWM0/PWM0.o
+ .debug_line    0x0000080a       0xe2 PWM1/PWM1.o
+ .debug_line    0x000008ec      0x104 UART/UART.o
 
-.debug_frame    0x00000000      0x294
+.debug_frame    0x00000000      0x2ec
  *(.debug_frame)
  .debug_frame   0x00000000       0x34 EEPROM/EEPROM.o
- .debug_frame   0x00000034      0x130 main.o
- .debug_frame   0x00000164       0x98 PWM0/PWM0.o
- .debug_frame   0x000001fc       0x44 PWM1/PWM1.o
- .debug_frame   0x00000240       0x54 UART/UART.o
+ .debug_frame   0x00000034      0x188 main.o
+ .debug_frame   0x000001bc       0x98 PWM0/PWM0.o
+ .debug_frame   0x00000254       0x44 PWM1/PWM1.o
+ .debug_frame   0x00000298       0x54 UART/UART.o
 
-.debug_str      0x00000000      0x5a1
+.debug_str      0x00000000      0x5f5
  *(.debug_str)
  .debug_str     0x00000000      0x208 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega328p/avr5/crtatmega328p.o
  .debug_str     0x00000208      0x160 EEPROM/EEPROM.o
                                 0x194 (size before relaxing)
- .debug_str     0x00000368      0x199 main.o
-                                0x31c (size before relaxing)
- .debug_str     0x00000501       0x69 PWM0/PWM0.o
+ .debug_str     0x00000368      0x1ed main.o
+                                0x370 (size before relaxing)
+ .debug_str     0x00000555       0x69 PWM0/PWM0.o
                                 0x1ea (size before relaxing)
- .debug_str     0x0000056a        0xf PWM1/PWM1.o
+ .debug_str     0x000005be        0xf PWM1/PWM1.o
                                 0x19a (size before relaxing)
- .debug_str     0x00000579       0x28 UART/UART.o
+ .debug_str     0x000005cd       0x28 UART/UART.o
                                 0x19e (size before relaxing)
 
-.debug_loc      0x00000000      0x447
+.debug_loc      0x00000000      0x55e
  *(.debug_loc)
  .debug_loc     0x00000000       0x5f EEPROM/EEPROM.o
- .debug_loc     0x0000005f      0x2c0 main.o
- .debug_loc     0x0000031f       0x97 PWM0/PWM0.o
- .debug_loc     0x000003b6       0x91 UART/UART.o
+ .debug_loc     0x0000005f      0x3d7 main.o
+ .debug_loc     0x00000436       0x97 PWM0/PWM0.o
+ .debug_loc     0x000004cd       0x91 UART/UART.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -653,13 +671,13 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000       0xe8
+.debug_ranges   0x00000000       0xf0
  *(.debug_ranges)
  .debug_ranges  0x00000000       0x18 EEPROM/EEPROM.o
- .debug_ranges  0x00000018       0x60 main.o
- .debug_ranges  0x00000078       0x30 PWM0/PWM0.o
- .debug_ranges  0x000000a8       0x20 PWM1/PWM1.o
- .debug_ranges  0x000000c8       0x20 UART/UART.o
+ .debug_ranges  0x00000018       0x68 main.o
+ .debug_ranges  0x00000080       0x30 PWM0/PWM0.o
+ .debug_ranges  0x000000b0       0x20 PWM1/PWM1.o
+ .debug_ranges  0x000000d0       0x20 UART/UART.o
 
 .debug_macro
  *(.debug_macro)

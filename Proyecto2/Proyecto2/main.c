@@ -27,6 +27,7 @@ void set_estado(void);
 void leer_EEPROOM(unsigned char posicion);
 void escribir_EEPROM(void);
 void set_estadoUART(unsigned char estado);
+void set_motor(uint8_t n_motor, uint8_t valor);
 
 // Variables
 volatile uint8_t canal_ADC = 0;
@@ -44,6 +45,10 @@ volatile uint8_t configuracion_flag = 0;
 
 volatile uint8_t received_RX = 0;
 volatile uint8_t dato_ENVIADO = 0;
+volatile uint8_t tipo_feed = 0;
+volatile uint8_t binario_buffer[2];
+volatile uint8_t binario_index = 0;
+volatile uint8_t en_modo_binario = 0;
 /****************************************/
 // Función principal
 int main(void)
@@ -55,13 +60,18 @@ int main(void)
     {
 		if (dato_ENVIADO)
 		{
-			if ((received_RX == 'M') || (received_RX == 'E') || (received_RX == 'S'))
+			dato_ENVIADO = 0;
+			if (tipo_feed == 'E')
 			{
 				set_estadoUART(received_RX);
 			}
-			if (((received_RX == 'A') || (received_RX == 'B') || (received_RX == 'C') || (received_RX == 'D')) && (estado_actual == 2))
+			else if ((tipo_feed == 'P') && (estado_actual == 2))
 			{
 				leer_EEPROOM(received_RX);
+			}
+			else if (tipo_feed == 'W')
+			{
+				set_motor(1, received_RX);
 			}
 		}
 		
@@ -110,7 +120,20 @@ void modo_MANUAL(void){
 	dutyCycle_PB1(500 + (servo1 * 2000UL / 255));
 	dutyCycle_PB2(500 + (servo2 * 2000UL / 255));
 	dutyCycle_PB3(500 + (servo3 * 2000UL / 255));
-	dutyCycle_PB4(500 + (servo4 * 2000UL / 255));
+	if (servo4 <= 63)
+	{
+		dutyCycle_PB4(500 + (servo4 * 2000UL / 255));
+	}
+}
+
+void set_motor(uint8_t n_motor, uint8_t valor){
+	switch (n_motor){
+		case 1: servo1 = valor; break;
+		case 2: servo2 = valor; break;
+		case 3: servo3 = valor; break;
+		case 4: servo4 = valor; break;
+	}
+	modo_MANUAL();
 }
 
 void set_estado(void){
@@ -211,6 +234,14 @@ ISR(PCINT2_vect){
 }
 
 ISR(USART_RX_vect){
-	received_RX = UDR0;
-	dato_ENVIADO = 1;
+	uint8_t byte = UDR0;
+	binario_buffer[binario_index++] = byte;
+	if (binario_index >= 2)
+	{
+		tipo_feed = binario_buffer[0];
+		received_RX = binario_buffer[1];
+		
+		binario_index = 0;
+		dato_ENVIADO = 1;
+	}
 }

@@ -22,6 +22,28 @@ FEED_ID_motor4 = 'Motor4'
 FEED_ID_estado = 'ESTADOS'
 FEED_ID_posicion = 'Posiciones_EEPROM'
 
+#Funciones extra
+def send_message(dato):
+    if dato == b'M\n':
+        client.publish('ESTADOS', 'M')
+    elif dato == b'E\n':
+        client.publish('ESTADOS', 'E')
+    elif dato == b'S\n':
+        client.publish('ESTADOS', 'S')
+
+def to_bytes(c1, c2):
+    return bytes([ord(c1), ord(c2) if isinstance(c2, str) else c2])
+
+def velocidad_pwm(velocidad):
+    velocidad = max(-100, min(100, velocidad))
+    pwm = int(127 + (velocidad*1.28))
+    return max(0, min(255, pwm))
+
+def angulo_pwm(angulo):
+    angulo = max(0, min(180, angulo))
+    pwm = int(angulo*(255/180))
+    return max(0, min(255, pwm))
+
 # Define "callback" functions which will be called when certain events 
 # happen (connected, disconnected, message arrived).
 def connected(client):
@@ -40,24 +62,28 @@ def disconnected(client):
 
 def message(client, feed_id, payload):
     print('Feed {0} received new value: {1}'.format(feed_id, payload))
-    miarduino.write(bytes(payload, 'utf-8'))
-
+    
     # Publish or "send" message to corresponding feed
     if feed_id == 'ESTADOS':
-        print('Sendind data back: {0}'.format(payload))
+        dato = to_bytes('E', payload)
     if feed_id == 'Posiciones_EEPROM':
-        print('Sendind data back: {0}'.format(payload))
+        dato = to_bytes('P', payload)
 
-    
+    if feed_id == 'Motor1':
+        payload = velocidad_pwm(float(payload))
+        dato = to_bytes('W', payload)
+    if feed_id == 'Motor2':
+        payload = velocidad_pwm(float(payload))
+        dato = to_bytes('X', payload)
+    if feed_id == 'Motor3':
+        payload = angulo_pwm(int(payload))
+        dato = to_bytes('Y', payload)
+    if feed_id == 'Motor4':
+        payload = angulo_pwm(int(payload))
+        dato = to_bytes('Z', payload)
+    print('Sending Arduino', dato)
+    miarduino.write(dato)
     # client.publish(FEED_ID_Send, payload)
-
-def send_message(dato):
-    if dato == b'M\n':
-        client.publish('ESTADOS', 'M')
-    elif dato == b'E\n':
-        client.publish('ESTADOS', 'E')
-    elif dato == b'S\n':
-        client.publish('ESTADOS', 'S')
 
 try:
     # Create an MQTT client instance.
